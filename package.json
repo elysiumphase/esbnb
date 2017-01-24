@@ -1,0 +1,44 @@
+{
+  "name": "esbnb",
+  "version": "1.0.0",
+  "author": "Adrien Valcke",
+  "description": "the eslint Airbnb config installer",
+  "bin": {
+    "esbnb": "bin/index.js"
+  },
+  "main": "",
+  "scripts": {
+    "lint": "eslint bin/",
+    "pretest": "npm run lint",
+    "test": "mocha -t 120000 test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:adrienvalcke/esbnb.git"
+  },
+  "os": [
+    "!win32"
+  ],
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "keywords": [
+    "eslint",
+    "installer",
+    "installator",
+    "airbnb"
+  ],
+  "dependencies": {
+    "colors": "^1.1.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.2.0"
+  },
+  "preferGlobal": true,
+  "license": "MIT"
+}
