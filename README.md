@@ -24,7 +24,7 @@ Run `esbnb legacy` at the root of your project.
 
 ###Configuration
 
-Form:
+.eslintrc:
 ```javascript
 {
   "extends": "airbnb" // or airbnb-base or airbnb-base/legacy
