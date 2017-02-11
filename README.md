@@ -31,7 +31,7 @@ Run `esbnb legacy` at the root of your project.
 }
 ```
 
-esbnb install and automatically configure your `.eslintrc` file. It only adds the configuration name in the `extends` property. If some values were present that are not airbnb config name, the `extends` property will be an array with all configuration name to be extended to.
+esbnb install and automatically configure your `.eslintrc` file. It only adds the configuration name in the `extends` property. If some values were present that are not airbnb config name, the `extends` property will be an array with all configuration name to be extended to. If another airbnb config is found, it will be replaced.
 
 Before any process, a copy of your `.eslintrc` is made in the case of something would go wrong. You'll find it in the **esbnb** package installed globally in the *configs* directory.
 
