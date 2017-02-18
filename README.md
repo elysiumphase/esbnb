@@ -1,50 +1,113 @@
-# esbnb, the eslint airbnb config installer
+# esbnb, the ESLint with Airbnb configuration installer
 
-###Installation
+##Requirements
 
-It is recommended to install esbnb globally.
+- **OS**: macOS or Linux
+- **engine**: npm
+
+##Installation
+
+It is recommended to install *esbnb* globally.
 
 `npm i -g esbnb`
 
-###Usage
+##Usage
 
-#####Install Airbnb config (by default)
+ESLint can be installed with 3 configurations from Airbnb: *airbnb*, *airbnb-base* and *airbnb-base/legacy*.
 
-Run `esbnb` at the root of your project.
+For more details on which packages are installed with ESlint see :
+- [ESLint with Airbnb config](https://www.npmjs.com/package/eslint-config-airbnb)
+- [ESLint with Airbnb base and legacy config](https://www.npmjs.com/package/eslint-config-airbnb-base)
+
+####Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ and React (default)
+
+At the root of your project, run:
+
+`esbnb`
+
+####Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ (base)
+
+At the root of your project, run:
+
+`esbnb base`
+
+####Install ESLint with the Airbnb ESLint rules, including ECMAScript 5 and below (legacy)
+
+At the root of your project, run:
+
+`esbnb legacy`
+
+####Need basic help ?
+
+At the root of your project, run:
+
+`esbnb -h||-help`
 
 
-#####Install Airbnb base config
+##Configuration
 
-Run `esbnb base` at the root of your project.
+No configuration are required from your own.
 
-#####Install Airbnb base/legacy config
+*esbnb* install and automatically configure your `.eslintrc` file. It only adds the configuration name in the `extends` property. If some values were present that are not an Airbnb config name, the `extends` property will be an array with all these values plus the Airbnb one. If another Airbnb config is found, it will be replaced by the one being installed.
 
-Run `esbnb legacy` at the root of your project.
-
-
-###Configuration
-
-.eslintrc:
-```javascript
-{
-  "extends": "airbnb" // or airbnb-base or airbnb-base/legacy
-}
-```
-
-esbnb install and automatically configure your `.eslintrc` file. It only adds the configuration name in the `extends` property. If some values were present that are not airbnb config name, the `extends` property will be an array with all configuration name to be extended to. If another airbnb config is found, it will be replaced.
-
-Before any process, a copy of your `.eslintrc` is made in the case of something would go wrong. You'll find it in the **esbnb** package installed globally in the *configs* directory.
+Before any process, a copy of your `.eslintrc` is made in the case of something would go wrong. You'll find it in the *esbnb* package installed globally in the *configs* directory.
 
 If no `.eslintrc` file were found, a new one will be created with proper configuration.
 
+Example of a new *.eslintrc* file created when installing ESLint with Airbnb base configuration :
+```javascript
+{
+  "extends": "airbnb-base"
+}
+```
 
-###Test
+Examples of an existing *.eslintrc* file already configured when installing ESLint with Airbnb base configuration :
+
+Before:
+```javascript
+{
+  "extends": "my-config"
+}
+```
+
+After:
+```javascript
+{
+  "extends": [
+    "my-config",
+    "airbnb-base"
+  ]
+}
+```
+
+Before:
+```javascript
+{
+  "extends": "airbnb-base/legacy"
+}
+```
+
+After:
+```javascript
+{
+  "extends": "airbnb-base"
+}
+```
+
+##Contribution
+
+Please feel free to contribute to this little tool. Here is/are some work in progress:
+
+- **Make it possible to change config**:
+  - after installing *airbnb-base* config with `esbnb base` command, running `esbnb` command will first remove related ESLint packages in *node_modules* and in *package.json* then install the proper one and configure the *.eslintrc* file. A solution could be to check when a Airbnb config is installed (function) and run a `npm un -D` on each packages related to the Airbnb configuration when the configuration is different or missing. Related file: *bin/index.js*
+
+##Test
 
 Run `npm test` to
-- lint with eslint (airbnb config base),
+- lint with ESLint (*airbnb-base* config),
 - run mocha unit tests with Chai.
 
-### Licence
+## Licence
 
 The MIT License (MIT) Copyright © 2016 Adrien Valcke
 

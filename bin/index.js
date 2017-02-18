@@ -2,11 +2,6 @@
 // sudo npm link
 /* eslint-disable no-console */
 
-/**
- *  TODO: make it possible to change config, after installing airbnb base config
- *  with 'esbnb base' command, 'esbnb' command will first remove associated
- *  eslint packages in node_modules and in package.json
- */
 const fs = require('fs');
 const path = require('path');
 const colors = require('colors/safe');
@@ -82,12 +77,26 @@ if (!helpIsNeeded) {
 if (helpIsNeeded || hasBadConfigName) {
   console.log(help);
 } else {
+  const command = `npm info "${pkg}" peerDependencies --json | command sed 's/[{},]//g ; s/: /@/g' | xargs npm install --save-dev "${pkg}"`;
+  let stdout;
+
   console.info(`${colors.yellow('esbnb')} is installing "${eslintExtend}" config...`);
 
-  const stdout = execSync(`npm info "${pkg}" peerDependencies --json | command sed 's/[{},]//g ; s/: /@/g' | xargs npm install --save-dev "${pkg}"`);
-  // 's/[\{\},]//g ;
+  try {
+    stdout = execSync(command);
+  } catch (e) {
+    console.error(`${colors.red(e)}`);
+    process.exit(1);
+  }
 
   const stdoutString = stdout.toString('utf8');
+
+  // check command errors that can appear without throwing in execSync
+  if (stdoutString === '') {
+    const error = new Error(`installion failed with command ${command}. Be sure you are on macOS/Linux and npm is installed.`);
+    console.error(`${colors.red(error)}`);
+    process.exit(1);
+  }
 
   console.info(stdoutString.replace(/(\w+[\w-.]*@\d\d?.\d\d?.\d\d?)/g, colors.bgBlack.yellow('$1')));
 
@@ -209,4 +218,6 @@ if (helpIsNeeded || hasBadConfigName) {
       console.error(colors.red(e));
     }
   }
+
+  process.exit(0);
 }

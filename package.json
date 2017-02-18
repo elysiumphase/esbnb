@@ -2,7 +2,7 @@
   "name": "esbnb",
   "version": "1.0.0",
   "author": "Adrien Valcke",
-  "description": "the eslint Airbnb config installer",
+  "description": "the ESLint with Airbnb configuration installer",
   "bin": {
     "esbnb": "bin/index.js"
   },
@@ -27,7 +27,9 @@
     "eslint",
     "installer",
     "installator",
-    "airbnb"
+    "airbnb",
+    "config",
+    "airbnb-base"
   ],
   "dependencies": {
     "colors": "^1.1.2"
