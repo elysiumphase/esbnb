@@ -1,20 +1,20 @@
 const colors = require('colors/safe');
 
 module.exports = `
-${colors.bgYellow.gray('--------------------------------------- HELP ---------------------------------------')}
+${colors.bgYellow.gray('------------------------------------------ HELP ------------------------------------------')}
 
                       ${colors.bold.yellow('ESBNB, the eslint airbnb config installer')}
 
-- INSTALL A CONFIG (airbnb by default, airbnb-base or airbnb-base/legacy)
+Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ and React (default)
+${colors.bold('$ esbnb')}
 
-$ esbnb
-${colors.gray('eslint-config-airbnb@latest will be installed')}
+Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ (base)
+${colors.bold('$ esbnb base')}
 
-$ esbnb base
-${colors.gray('eslint-config-airbnb-base@latest will be installed')}
+Install ESLint with the Airbnb ESLint rules, including ECMAScript 5 and below (legacy)
+${colors.bold('$ esbnb legacy')}
 
-$ esbnb legacy
-${colors.gray('eslint-config-airbnb-base will be installed')}
+${colors.gray('.eslintrc file will be created if not already and properly configured.')}
 
-${colors.bgYellow.gray('------------------------------------- END HELP -------------------------------------')}
+${colors.bgYellow.gray('---------------------------------------- END HELP ----------------------------------------')}
 `;

@@ -8,20 +8,17 @@ const colors = require('colors/safe');
 const help = require('./help');
 const execSync = require('child_process').execSync;
 
+const configsDirectory = path.join(__dirname, '../configs/');
 const packageJson = './package.json';
 const eslintrc = './.eslintrc';
 const anonymousProject = 'anonymous';
-
 const eslintConfig = 'eslint-config';
-
 const eslintExtends = [
   'airbnb',
   'airbnb-base',
   'airbnb-base/legacy',
 ];
-
 const is = Object.prototype.isPrototypeOf;
-
 const [,, config] = [...process.argv];
 const helpIsNeeded = (config === '-help' || config === '-h');
 
@@ -30,6 +27,16 @@ let eslintExtend;
 let projectName;
 let hasBadConfigName = false;
 let hasPackageJson = true;
+
+// check internal 'configs' directory exists or create it to save user .eslintrc files
+try {
+  fs.mkdirSync(configsDirectory);
+} catch (e) {
+  if (e.code !== 'EEXIST') {
+    console.error(colors.red(`esbnb cannot continue installation. The internal "configs" directory is missing and cannot be created:\n${e}`));
+    process.exit(1);
+  }
+}
 
 // check package.json file and get project name (consider no package if bad JSON)
 try {
@@ -80,12 +87,12 @@ if (helpIsNeeded || hasBadConfigName) {
   const command = `npm info "${pkg}" peerDependencies --json | command sed 's/[{},]//g ; s/: /@/g' | xargs npm install --save-dev "${pkg}"`;
   let stdout;
 
-  console.info(`${colors.yellow('esbnb')} is installing "${eslintExtend}" config...`);
+  console.info(colors.yellow(`esbnb is installing "${eslintExtend}" config...`));
 
   try {
     stdout = execSync(command);
   } catch (e) {
-    console.error(`${colors.red(e)}`);
+    console.error(colors.red(e));
     process.exit(1);
   }
 
@@ -93,14 +100,13 @@ if (helpIsNeeded || hasBadConfigName) {
 
   // check command errors that can appear without throwing in execSync
   if (stdoutString === '') {
-    const error = new Error(`installion failed with command ${command}. Be sure you are on macOS/Linux and npm is installed.`);
-    console.error(`${colors.red(error)}`);
+    console.error(colors.red(`esbnb installion failed with command ${command}. Be sure you are on macOS/Linux and npm is installed.`));
     process.exit(1);
   }
 
   console.info(stdoutString.replace(/(\w+[\w-.]*@\d\d?.\d\d?.\d\d?)/g, colors.bgBlack.yellow('$1')));
 
-  console.info(`${colors.yellow('esbnb')} is configuring "${eslintrc}" file...`);
+  console.info(colors.yellow(`esbnb is configuring "${eslintrc}" file...`));
 
   // check if a .eslintrc exists at the root of the app
   let hasEslintrc;
@@ -124,22 +130,21 @@ if (helpIsNeeded || hasBadConfigName) {
     /* eslint-enable max-len */
 
     const eslintrcCopyName = `${projectName}.${nowFormat}.eslintrc`;
-    const pathToConfigsDirectory = path.join(__dirname, '../configs/');
 
     let hasDirectoryProject = true;
 
     try {
-      hasDirectoryProject = fs.statSync(path.join(pathToConfigsDirectory, projectName))
+      hasDirectoryProject = fs.statSync(path.join(configsDirectory, projectName))
                               .isDirectory();
     } catch (e) {
       hasDirectoryProject = false;
     }
 
     if (!hasDirectoryProject) {
-      fs.mkdirSync(path.join(pathToConfigsDirectory, projectName));
+      fs.mkdirSync(path.join(configsDirectory, projectName));
     }
 
-    fs.linkSync(eslintrc, path.join(pathToConfigsDirectory, projectName, eslintrcCopyName));
+    fs.linkSync(eslintrc, path.join(configsDirectory, projectName, eslintrcCopyName));
 
 
     // get eslint config in JSON format

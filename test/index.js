@@ -12,22 +12,22 @@ const process = require('child_process');
  */
 
 const outputHelp = `
---------------------------------------- HELP ---------------------------------------
+------------------------------------------ HELP ------------------------------------------
 
                       ESBNB, the eslint airbnb config installer
 
-- INSTALL A CONFIG (airbnb by default, airbnb-base or airbnb-base/legacy)
-
+Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ and React (default)
 $ esbnb
-eslint-config-airbnb@latest will be installed
 
+Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ (base)
 $ esbnb base
-eslint-config-airbnb-base@latest will be installed
 
+Install ESLint with the Airbnb ESLint rules, including ECMAScript 5 and below (legacy)
 $ esbnb legacy
-eslint-config-airbnb-base will be installed
 
-------------------------------------- END HELP -------------------------------------
+.eslintrc file will be created if not already and properly configured.
+
+---------------------------------------- END HELP ----------------------------------------
 
 `;
 
