@@ -10,27 +10,6 @@ const process = require('child_process');
 /**
  * Configurations
  */
-
-const outputHelp = `
------------------------------------------- HELP ------------------------------------------
-
-                      ESBNB, the eslint airbnb config installer
-
-Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ and React (default)
-$ esbnb
-
-Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ (base)
-$ esbnb base
-
-Install ESLint with the Airbnb ESLint rules, including ECMAScript 5 and below (legacy)
-$ esbnb legacy
-
-.eslintrc file will be created if not already and properly configured.
-
----------------------------------------- END HELP ----------------------------------------
-
-`;
-
 const is = Object.prototype.isPrototypeOf;
 
 // esbnb bin file
@@ -239,17 +218,17 @@ describe('esbnb', function() {
 
     it('should output help with -h option', function() {
       const stdout = esbnb('-h');
-      expect(stdout.toString('utf8')).to.equal(outputHelp);
+      expect(stdout.toString('utf8')).to.include('HELP');
     });
 
     it('should output help with -help option', function() {
       const stdout = esbnb('-help');
-      expect(stdout.toString('utf8')).to.equal(outputHelp);
+      expect(stdout.toString('utf8')).to.include('HELP');
     });
 
     it('should output help with bad argument', function() {
       const stdout = esbnb('xsjhdhdsjlq');
-      expect(stdout.toString('utf8')).to.equal(outputHelp);
+      expect(stdout.toString('utf8')).to.include('HELP');
     });
   });
 

@@ -1,17 +1,17 @@
 # esbnb, the ESLint with Airbnb configuration installer
 
-##Requirements
+## Requirements
 
 - **OS**: macOS or Linux
 - **engine**: npm
 
-##Installation
+## Installation
 
 It is recommended to install *esbnb* globally.
 
 `npm i -g esbnb`
 
-##Usage
+## Usage
 
 ESLint can be installed with 3 configurations from Airbnb: *airbnb*, *airbnb-base* and *airbnb-base/legacy*.
 
@@ -19,32 +19,32 @@ For more details on which packages are installed with ESlint see :
 - [ESLint with Airbnb config](https://www.npmjs.com/package/eslint-config-airbnb)
 - [ESLint with Airbnb base and legacy config](https://www.npmjs.com/package/eslint-config-airbnb-base)
 
-####Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ and React (default)
+#### Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ and React (default)
 
 At the root of your project, run:
 
 `esbnb`
 
-####Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ (base)
+#### Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ (base)
 
 At the root of your project, run:
 
 `esbnb base`
 
-####Install ESLint with the Airbnb ESLint rules, including ECMAScript 5 and below (legacy)
+#### Install ESLint with the Airbnb ESLint rules, including ECMAScript 5 and below (legacy)
 
 At the root of your project, run:
 
 `esbnb legacy`
 
-####Need basic help ?
+#### Need basic help ?
 
 At the root of your project, run:
 
 `esbnb -h||-help`
 
 
-##Configuration
+## Configuration
 
 No configuration are required from your own.
 
@@ -94,14 +94,14 @@ After:
 }
 ```
 
-##Contribution
+## Contribution
 
 Please feel free to contribute to this little tool. Here is/are some work in progress:
 
 - **Make it possible to change config**:
   - after installing *airbnb-base* config with `esbnb base` command, running `esbnb` command will first remove related ESLint packages in *node_modules* and in *package.json* then install the proper one and configure the *.eslintrc* file. A solution could be to check when a Airbnb config is installed (function) and run a `npm un -D` on each packages related to the Airbnb configuration when the configuration is different or missing. Related file: *bin/index.js*
 
-##Test
+## Test
 
 Run `npm test` to
 - lint with ESLint (*airbnb-base* config),

@@ -5,8 +5,8 @@
 const fs = require('fs');
 const path = require('path');
 const colors = require('colors/safe');
+const { execSync } = require('child_process');
 const help = require('./help');
-const execSync = require('child_process').execSync;
 
 const configsDirectory = path.join(__dirname, '../configs/');
 const packageJson = './package.json';
@@ -134,8 +134,7 @@ if (helpIsNeeded || hasBadConfigName) {
     let hasDirectoryProject = true;
 
     try {
-      hasDirectoryProject = fs.statSync(path.join(configsDirectory, projectName))
-                              .isDirectory();
+      hasDirectoryProject = fs.statSync(path.join(configsDirectory, projectName)).isDirectory();
     } catch (e) {
       hasDirectoryProject = false;
     }
