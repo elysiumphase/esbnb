@@ -2,8 +2,8 @@
 
 ## Requirements
 
-- **OS**: macOS or Linux
-- **engine**: npm
+- **OS**: macOS or linux
+- **engines**: node carbon with npm >=6.13.4
 
 ## Installation
 
@@ -96,10 +96,11 @@ After:
 
 ## Contribution
 
-Please feel free to contribute to this little tool. Here is/are some work in progress:
+Please feel free to contribute to this little tool. Here are some work in progress:
 
-- **Make it possible to change config**:
-  - after installing *airbnb-base* config with `esbnb base` command, running `esbnb` command will first remove related ESLint packages in *node_modules* and in *package.json* then install the proper one and configure the *.eslintrc* file. A solution could be to check when a Airbnb config is installed (function) and run a `npm un -D` on each packages related to the Airbnb configuration when the configuration is different or missing. Related file: *bin/index.js*
+- change the first arg to be `install` / `uninstall`
+- add a command `esbnb uninstall airbnbConfigName`
+- when running an installation and another airbnb config is found, this should first uninstall all the related packages properly and then install the specified packages
 
 ## Test
 
@@ -109,7 +110,7 @@ Run `npm test` to
 
 ## Licence
 
-The MIT License (MIT) Copyright © 2016 Adrien Valcke
+The MIT License (MIT) Copyright © 2019 Adrien Valcke
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

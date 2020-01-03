@@ -2,13 +2,15 @@
  * NOTE: 'npm test' command should be run at the root esbnb directory
  */
 
-const expect = require('chai').expect;
-const fs = require ('fs');
+/* eslint-disable */
+
+const { expect } = require('chai');
+const fs = require('fs');
 const path = require('path');
 const process = require('child_process');
 
 /**
- * Configurations
+ * configurations
  */
 const is = Object.prototype.isPrototypeOf;
 
@@ -23,7 +25,7 @@ const packageJson = path.join(__dirname, 'package.json');
 
 const packageConfig = {
   withProjectName: {
-    name: "my-project",
+    name: 'my-project',
     description: 'my project',
     repository: {},
     devDependencies: {},
@@ -67,7 +69,7 @@ const eslintrc = path.join(__dirname, '.eslintrc');
 const eslintConfig = {
   noExtends: {},
   extendsArray: {
-    extends: []
+    extends: [],
   },
   extendsStrAirbnb: {
     extends: 'airbnb',
@@ -99,7 +101,7 @@ const eslintConfig = {
 };
 
 /**
- * Functions for creating or removing .eslintrc, package.json files,
+ * functions for creating or removing .eslintrc, package.json files,
  * node_modules directory, clear configs directory and run esbnb process
  */
 const cleanDirSync = function cleanDirSync(dir, thenRemove) {
@@ -118,7 +120,7 @@ const cleanDirSync = function cleanDirSync(dir, thenRemove) {
           const deleted = cleanDirSync(filePath, true);
 
           if (!deleted) {
-          console.error(`WARN ${filePath} has not been deleted`);
+            console.error(`WARN ${filePath} has not been deleted`);
           }
         } else {
           fs.unlinkSync(filePath);
@@ -161,7 +163,9 @@ const createEslintrc = function createEslintrc(config) {
 const removeEslintrc = function removeEslintrc() {
   try {
     fs.unlinkSync(eslintrc);
-  } catch (e) {}
+  } catch (e) {
+    // do nothing
+  }
 };
 
 const cleanConfigsDir = function cleanConfigsDir() {
@@ -179,7 +183,9 @@ const createPackageJson = function createPackageJson(config) {
 const removePackageJson = function removePackageJson() {
   try {
     fs.unlinkSync(packageJson);
-  } catch (e) {}
+  } catch (e) {
+    // do nothing
+  }
 };
 
 const removeNodeModules = function removeNodeModules() {
@@ -232,6 +238,7 @@ describe('esbnb', function() {
     });
   });
 
+  // test project directory created in configs directory
   context('when the .eslintrc exists whatever the airbnb config to install', function() {
     context('when the project has a name', function() {
       before(function() {
