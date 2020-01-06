@@ -3,7 +3,7 @@ const colors = require('colors/safe');
 module.exports = `
 ${colors.bgYellow.gray('------------------------------------------ HELP ------------------------------------------')}
 
-                      ${colors.bold.yellow('ESBNB, the eslint airbnb config installer')}
+                      ${colors.bold.yellow('ESBNB, the ESLint airbnb config installer')}
 
 Install ESLint with the Airbnb ESLint rules, including ECMAScript 6+ and React (default)
 ${colors.bold('$ esbnb')}

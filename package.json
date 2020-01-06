@@ -1,8 +1,8 @@
 {
   "name": "esbnb",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "author": "Adrien Valcke",
-  "description": "the ESLint with Airbnb configuration installer",
+  "description": "The ESLint with Airbnb configuration installer",
   "bin": {
     "esbnb": "bin/index.js"
   },
@@ -20,8 +20,8 @@
     "!win32"
   ],
   "engines": {
-    "node": ">=6",
-    "npm": ">=3"
+    "node": ">=8.17.0",
+    "npm": ">=6.13.4"
   },
   "keywords": [
     "eslint",
@@ -32,14 +32,14 @@
     "airbnb-base"
   ],
   "dependencies": {
-    "colors": "1.3.3"
+    "colors": "1.4.0"
   },
   "devDependencies": {
-    "chai": "4.1.2",
-    "eslint": "5.9.0",
-    "eslint-config-airbnb-base": "13.1.0",
-    "eslint-plugin-import": "2.14.0",
-    "mocha": "5.1.1"
+    "chai": "4.2.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-import": "2.19.1",
+    "mocha": "6.2.2"
   },
   "preferGlobal": true,
   "license": "MIT"
