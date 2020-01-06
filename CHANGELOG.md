@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.1.0 - delivery @03/01/2020
+## 1.1.0 - delivery @06/01/2020
 
 - upgrade dependencies' version
 - fix some wording
