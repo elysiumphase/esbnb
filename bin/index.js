@@ -33,7 +33,7 @@ try {
   fs.mkdirSync(configsDirectory);
 } catch (e) {
   if (e.code !== 'EEXIST') {
-    console.error(colors.red(`esbnb cannot continue installation. The internal "configs" directory is missing and cannot be created:\n${e}`));
+    console.error(colors.red(`esbnb cannot continue installation, internal "configs" directory is missing and cannot be created:\n${e}`));
     process.exit(1);
   }
 }
@@ -49,7 +49,7 @@ try {
 // if there is no package.json, if not a file or bad JSON format, exit
 if (!hasPackageJson) {
   console.error(colors.red(`"${packageJson}" is required to install eslint with airbnb config`));
-  console.error(colors.red(`Please make sure your "${packageJson}" exists and has a valid JSON format`));
+  console.error(colors.red(`please make sure your "${packageJson}" exists and has a valid JSON format`));
   process.exit(1);
 }
 
@@ -60,7 +60,7 @@ if (is.call(String.prototype, Object(projectName))) {
   projectName = anonymousProject;
 }
 
-// set proper value for config
+// set proper value for user config
 if (!helpIsNeeded) {
   switch (config) {
     case undefined:
@@ -100,7 +100,7 @@ if (helpIsNeeded || hasBadConfigName) {
 
   // check command errors that can appear without throwing in execSync
   if (stdoutString === '') {
-    console.error(colors.red(`esbnb installion failed with command ${command}. Be sure you are on macOS/Linux and npm is installed.`));
+    console.error(colors.red(`esbnb installion failed with command ${command}, please be sure you are on macOS or Linux and npm is installed.`));
     process.exit(1);
   }
 
@@ -145,7 +145,6 @@ if (helpIsNeeded || hasBadConfigName) {
 
     fs.linkSync(eslintrc, path.join(configsDirectory, projectName, eslintrcCopyName));
 
-
     // get eslint config in JSON format
     try {
       eslintrcConfig = JSON.parse(fs.readFileSync(eslintrc));
@@ -164,11 +163,11 @@ if (helpIsNeeded || hasBadConfigName) {
 
       /**
        * if 'extends' property
-       *    does not exist, create it
-       *    is an array,
-       *      if config to install is not in it, remove all airbnb config and add current
-       *    is a string and contains a airbnb config,
-       *      replace it if not already the same, or concat these two values in an array
+       *    - does not exist, create it
+       *    - is an array,
+       *       * if config to install is not in it, remove all airbnb config and add current
+       *    - is a string and contains a airbnb config,
+       *       * replace it if not already the same, or concat these two values in an array
        */
       if (extendsProp === undefined) {
         eslintrcConfig.extends = eslintExtend;
@@ -176,8 +175,9 @@ if (helpIsNeeded || hasBadConfigName) {
         if (extendsProp.indexOf(eslintExtend) !== -1) {
           hasAlreadyConfig = true;
         }
+
         const extendsWithNoAirbnbConfig = extendsProp
-          .filter(extend => eslintExtends.indexOf(extend) === -1);
+          .filter((extend) => eslintExtends.indexOf(extend) === -1);
 
         extendsWithNoAirbnbConfig.push(eslintExtend);
         eslintrcConfig.extends = extendsWithNoAirbnbConfig;
@@ -193,31 +193,31 @@ if (helpIsNeeded || hasBadConfigName) {
       } else {
         isConfigInserted = false;
 
-        console.error(colors.red(`esbnb can not insert correct config in "${eslintrc}":`));
-        console.error(colors.red('"extends" property is not an array nor a string.'));
+        console.error(colors.red(`esbnb cannot insert correct config in "${eslintrc}":`));
+        console.error(colors.red('"extends" property is not an array neither a string.'));
       }
 
       if (hasAlreadyConfig) {
-        console.info(`"${eslintrc}" already has proper configuration`);
+        console.info(`"${eslintrc}" already configured`);
       } else if (isConfigInserted) {
         console.info(`"${eslintrc}" has been updated and configured`);
       }
 
       try {
         fs.writeFileSync(eslintrc, JSON.stringify(eslintrcConfig, null, 2));
-        console.info(colors.green(`eslint with "${eslintExtend}" config is ready to use.`));
+        console.info(colors.green(`eslint with "${eslintExtend}" config ready to be used.`));
       } catch (e) {
         console.error(colors.red(e));
       }
     } else {
-      console.error(colors.red(`esbnb can not read "${eslintrc}": bad JSON format, literral object needed.`));
+      console.error(colors.red(`esbnb cannot read "${eslintrc}": bad JSON format, literral object needed.`));
     }
   } else {
     // no .eslintrc file, create it
     try {
       fs.writeFileSync(eslintrc, JSON.stringify({ extends: eslintExtend }, null, 2));
       console.info(`"${eslintrc}" has been created and configured.`);
-      console.info(colors.green(`eslint with "${eslintExtend}" config is ready to use.`));
+      console.info(colors.green(`eslint with "${eslintExtend}" config ready to be used.`));
     } catch (e) {
       console.error(colors.red(e));
     }
