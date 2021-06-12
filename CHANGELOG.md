@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.1.1 - delivery @12/06/2021
+
+- update dependencies
+- add github community files
+- update readme
+- add todo
+- update tests
+
 ## 1.1.0 - delivery @06/01/2020
 
 - upgrade dependencies' version

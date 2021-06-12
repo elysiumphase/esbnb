@@ -22,6 +22,7 @@ const configsDirectory = path.join(__dirname, '../configs/');
 
 // package.json configurations
 const packageJson = path.join(__dirname, 'package.json');
+const packageLock = path.join(__dirname, 'package-lock.json');
 
 const packageConfig = {
   withProjectName: {
@@ -183,6 +184,7 @@ const createPackageJson = function createPackageJson(config) {
 const removePackageJson = function removePackageJson() {
   try {
     fs.unlinkSync(packageJson);
+    fs.unlinkSync(packageLock);
   } catch (e) {
     // do nothing
   }
@@ -782,6 +784,7 @@ describe('esbnb', function() {
       cleanConfigsDir();
       removeEslintrc();
       removeNodeModules();
+      removePackageJson();
     });
   });
 });
