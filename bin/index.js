@@ -4,8 +4,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const colors = require('colors/safe');
 const { execSync } = require('child_process');
+const colors = require('colors/safe');
 const help = require('./help');
 
 const configsDirectory = path.join(__dirname, '../configs/');
@@ -30,7 +30,7 @@ let hasPackageJson = true;
 
 // check internal 'configs' directory exists or create it to save user .eslintrc files
 try {
-  fs.mkdirSync(configsDirectory);
+  fs.mkdirSync(configsDirectory, { recursive: true });
 } catch (e) {
   if (e.code !== 'EEXIST') {
     console.error(colors.red(`esbnb cannot continue installation, internal "configs" directory is missing and cannot be created:\n${e}`));
@@ -129,21 +129,21 @@ if (helpIsNeeded || hasBadConfigName) {
     const nowFormat = `${now.getMonth()}.${now.getDate()}.${now.getFullYear()}.${now.getHours()}.${now.getMinutes()}.${now.getSeconds()}`;
     /* eslint-enable max-len */
 
-    const eslintrcCopyName = `${projectName}.${nowFormat}.eslintrc`;
-
+    const eslintrcCopyName = `${projectName}.${nowFormat}.eslintrc`.replace('/', '-');
+    const configDirectory = path.join(configsDirectory, projectName);
     let hasDirectoryProject = true;
 
     try {
-      hasDirectoryProject = fs.statSync(path.join(configsDirectory, projectName)).isDirectory();
+      hasDirectoryProject = fs.statSync(configDirectory).isDirectory();
     } catch (e) {
       hasDirectoryProject = false;
     }
 
     if (!hasDirectoryProject) {
-      fs.mkdirSync(path.join(configsDirectory, projectName));
+      fs.mkdirSync(configDirectory, { recursive: true });
     }
 
-    fs.linkSync(eslintrc, path.join(configsDirectory, projectName, eslintrcCopyName));
+    fs.linkSync(eslintrc, path.join(configDirectory, eslintrcCopyName));
 
     // get eslint config in JSON format
     try {
@@ -215,7 +215,7 @@ if (helpIsNeeded || hasBadConfigName) {
   } else {
     // no .eslintrc file, create it
     try {
-      fs.writeFileSync(eslintrc, JSON.stringify({ extends: eslintExtend }, null, 2));
+      fs.writeFileSync(eslintrc, `${JSON.stringify({ extends: eslintExtend }, null, 2)}\n`);
       console.info(`"${eslintrc}" has been created and configured.`);
       console.info(colors.green(`eslint with "${eslintExtend}" config ready to be used.`));
     } catch (e) {

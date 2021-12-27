@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.2 - delivery @27/12/2021
+
+- update dependencies
+- fix directory creation to be recursive to support scoped dependencies
+
 ## 1.1.1 - delivery @12/06/2021
 
 - update dependencies
