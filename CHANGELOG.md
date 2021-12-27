@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.3 - delivery @27/12/2021
+
+- add only bin files to npm package
+
 ## 1.1.2 - delivery @27/12/2021
 
 - update dependencies
