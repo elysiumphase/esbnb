@@ -32,6 +32,13 @@ const packageConfig = {
     devDependencies: {},
     license: 'UNLICENSED',
   },
+  withScopedProjectName: {
+    name: '@scope/my-project',
+    description: 'my project',
+    repository: {},
+    devDependencies: {},
+    license: 'UNLICENSED',
+  },
   withNoProjectName: {
     description: 'my project',
     repository: {},
@@ -253,6 +260,20 @@ describe('esbnb', function() {
         const savedConfigsDirectory = fs.readdirSync(configsDirectory);
 
         expect(savedConfigsDirectory).to.contain(packageConfig.withProjectName.name);
+      });
+    });
+
+    context('when the project has a name and a scope', function() {
+      before(function() {
+        createPackageJson(packageConfig.withScopedProjectName);
+        createEslintrc(eslintConfig.extendsStrAirbnb);
+        esbnb();
+      });
+
+      it('should copy the current .eslintrc to the esbnb "configs" directory and in a subdirectory in the name of the project', function() {
+        const savedConfigsDirectory = fs.readdirSync(configsDirectory);
+
+        expect(savedConfigsDirectory).to.contain(packageConfig.withScopedProjectName.name.split('/')[0]);
       });
     });
 
