@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.2.0 - delivery @05/06/2023
+
+- chore: remove colors dependency
+- chore: update dev dependencies
+- docs: update readme and other docs
+
 ## 1.1.3 - delivery @27/12/2021
 
 - add only bin files to npm package

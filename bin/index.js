@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const colors = require('colors/safe');
+const colors = require('./colors');
 const help = require('./help');
 
 const configsDirectory = path.join(__dirname, '../configs/');
@@ -104,7 +104,7 @@ if (helpIsNeeded || hasBadConfigName) {
     process.exit(1);
   }
 
-  console.info(stdoutString.replace(/(\w+[\w-.]*@\d\d?.\d\d?.\d\d?)/g, colors.bgBlack.yellow('$1')));
+  console.info(stdoutString.replace(/(\w+[\w-.]*@\d\d?.\d\d?.\d\d?)/g, colors.backgroundDarkGray('$1')));
 
   console.info(colors.yellow(`esbnb is configuring "${eslintrc}" file...`));
 
