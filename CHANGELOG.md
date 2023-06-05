@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.1 - delivery @05/06/2023
+
+- fix: minor color issues
+
 ## 1.2.0 - delivery @05/06/2023
 
 - chore: remove colors dependency

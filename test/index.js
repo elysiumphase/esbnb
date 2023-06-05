@@ -233,17 +233,17 @@ describe('esbnb', function() {
 
     it('should output help with -h option', function() {
       const stdout = esbnb('-h');
-      expect(stdout.toString('utf8')).to.include('HELP');
+      expect(stdout.toString('utf8')).to.include('ESBNB, the ESLint airbnb config installer');
     });
 
     it('should output help with -help option', function() {
       const stdout = esbnb('-help');
-      expect(stdout.toString('utf8')).to.include('HELP');
+      expect(stdout.toString('utf8')).to.include('ESBNB, the ESLint airbnb config installer');
     });
 
     it('should output help with bad argument', function() {
       const stdout = esbnb('xsjhdhdsjlq');
-      expect(stdout.toString('utf8')).to.include('HELP');
+      expect(stdout.toString('utf8')).to.include('ESBNB, the ESLint airbnb config installer');
     });
   });
 
