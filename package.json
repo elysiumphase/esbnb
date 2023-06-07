@@ -1,6 +1,6 @@
 {
   "name": "esbnb",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "Elysium Phase <hi@elysiumphase.com> (https://github.com/elysiumphase)",
   "description": "The ESLint with Airbnb configuration installer",
   "bin": {

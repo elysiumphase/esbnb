@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.2 - delivery @07/06/2023
+
+- docs: fix author
+
 ## 1.2.1 - delivery @05/06/2023
 
 - fix: minor color issues
